@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="login.js"></script>
+    <script defer src="register.js"></script>
+    <script defer src="posts.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><button id="login-button" onclick="showLogin()">Đăng nhập</button></li>
+                <li><button data-action="showPosts" onclick="showPosts()">Quản lý bài viết</button></li>
+                <li><button onclick="showCategories()">Phân loại chủ đề du học</button></li>
+                <li><button onclick="showUsers()">Quản lý người dùng</button></li>
+                <li><button onclick="logout()">Đăng xuất</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-content">
+        <!-- Các phần nội dung sẽ được thêm vào bằng JavaScript -->
+    </main>
+
+    <script>
+        function showLogin() {
+            fetch('login.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("main-content").innerHTML = html;
+                    // Thêm sự kiện bắt form submit vào login form
+                    document.getElementById("login-form").addEventListener("submit", function(event) {
+                        event.preventDefault(); // Ngăn chặn form submit mặc định
+                        login(); // Gọi hàm login khi submit form
+                    });
+                })
+                .catch(error => console.log('Error fetching login.html:', error));
+        }
+
+        function showRegister() {
+            fetch('register.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("main-content").innerHTML = html;
+                    // Thêm sự kiện bắt form submit vào register form
+                    document.getElementById("register-form").addEventListener("submit", function(event) {
+                        event.preventDefault(); // Ngăn chặn form submit mặc định
+                        register(); // Gọi hàm register khi submit form
+                    });
+                })
+                .catch(error => console.log('Error fetching register.html:', error));
+        }
+
+        //post
+
+        function showPosts() {
+            // Tải nội dung của trang posts.html
+            fetch('posts.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Thêm nội dung của trang posts.html vào main-content
+                    document.getElementById("main-content").innerHTML = html;
+                    // Thêm sự kiện submit vào form thêm bài viết
+                    document.getElementById("addPostForm").addEventListener("submit", function(event) {
+                        event.preventDefault(); // Ngăn chặn form submit mặc định
+                        addPost(); // Gọi hàm addPost khi submit form
+                    });
+                })
+                .catch(error => console.log('Error fetching posts.html:', error));
+        }
+        document.getElementById("main-content").addEventListener("click", function(event) {
+            if (event.target.classList.contains("edit-button")) {
+                var postId = event.target.dataset.postId;
+                editPost(postId); // Gọi hàm editPost từ posts.js
+            } else if (event.target.id === "saveEditButton") {
+                saveEdit(); // Gọi hàm saveEdit từ posts.js
+            } else if (event.target.id === "cancelEditButton") {
+                cancelEdit(); // Gọi hàm cancelEdit từ posts.js
+            }
+        });
+
+        // Hàm editPost, saveEdit, và cancelEdit
+        function editPost(postId) {}
+
+        function saveEdit() {}
+
+        function cancelEdit() {}
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

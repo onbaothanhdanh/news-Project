@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý bài viết</title>
+    <link rel="stylesheet" href="posts.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Quản lý bài viết</h2>
+        <div class="form-container">
+            <h3>Thêm bài viết</h3>
+            <form id="addPostForm">
+                <input type="text" id="title" placeholder="Tiêu đề" required><br>
+                <select id="category" required>
+                    <option value="" disabled selected>Chọn chủ đề</option>
+                    <option value="Du học Mỹ">Du học Mỹ</option>
+                    <option value="Du học Nhật Bản">Du học Nhật Bản</option>
+                    <option value="Du học Hàn Quốc">Du học Hàn Quốc</option>
+                </select><br>
+                <textarea id="content" placeholder="Nội dung" required></textarea><br>
+                <input type="checkbox" id="hotNews">
+                <label for="hotNews">Hot News</label><br>
+                <button type="submit">Thêm</button>
+            </form>
+        </div>
+        <div class="post-list">
+            <h3>Danh sách bài viết</h3>
+            <ul id="postList"></ul>
+        </div>
+    </div>
+
+    <div id="editForm" class="edit-form">
+        <h3>Chỉnh sửa bài viết</h3>
+        <form id="editPostForm">
+            <input type="hidden" id="editPostId">
+            <input type="text" id="editTitle" placeholder="Tiêu đề" required><br>
+            <select id="editCategory" required>
+                <option value="" disabled selected>Chọn chủ đề</option>
+                <option value="Du học Mỹ">Du học Mỹ</option>
+                <option value="Du học Nhật Bản">Du học Nhật Bản</option>
+                <option value="Du học Hàn Quốc">Du học Hàn Quốc</option>
+            </select><br>
+            <textarea id="editContent" placeholder="Nội dung" required></textarea><br>
+            <input type="checkbox" id="editHotNews">
+            <label for="editHotNews">Hot News</label><br>
+            <button type="button" id="saveEditButton">Lưu</button>
+            <button type="button" id="cancelEditButton">Hủy</button>
+        </form>
+    </div>
+
+    <script src="posts.js"></script>
+</body>
+
+</html>
